@@ -7,7 +7,6 @@ export default function EngineerTable({
   selectedIds,
   onSelectAll,
   onSelectOne,
-  onToggleFeatured,
   onEdit,
   onViewProfile,
   onDelete,
@@ -62,7 +61,6 @@ export default function EngineerTable({
               <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Rates</th>
               <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Availability</th>
               <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Visibility</th>
-              <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Featured</th>
               <th className="px-4 py-3 text-xs font-semibold uppercase tracking-wider text-slate-500">Actions</th>
             </tr>
           </thead>
@@ -114,17 +112,6 @@ export default function EngineerTable({
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     <EngineerBadge type="visibility" value={eng.visibility} />
-                  </td>
-                  <td className="px-4 py-3 whitespace-nowrap">
-                    <button
-                      onClick={() => onToggleFeatured(eng.id)}
-                      className={`transition-colors ${
-                        eng.featured ? "text-blue-600" : "text-slate-300 hover:text-slate-400"
-                      }`}
-                      title={eng.featured ? "Remove featured" : "Mark as featured"}
-                    >
-                      <Star size={18} fill={eng.featured ? "currentColor" : "none"} />
-                    </button>
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     <div className="flex items-center gap-1">

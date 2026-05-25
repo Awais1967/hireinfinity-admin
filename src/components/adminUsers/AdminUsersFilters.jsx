@@ -13,8 +13,8 @@ export default function AdminUsersFilters({ searchQuery, onSearchChange, roleFil
         </div>
         <select value={roleFilter} onChange={(e) => onRoleChange(e.target.value)} className="rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none focus:border-blue-400">
           <option value="">All Roles</option>
-          <option value="Super Admin">Super Admin</option>
           <option value="Admin">Admin</option>
+          {/* <option value="Admin">Admin</option> */}
           <option value="Manager">Manager</option>
           <option value="Content Editor">Content Editor</option>
           <option value="Viewer">Viewer</option>

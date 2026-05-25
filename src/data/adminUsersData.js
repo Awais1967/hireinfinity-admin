@@ -1,5 +1,5 @@
 export const initialUsers = [
-  { id: 1, name: "Admin User", email: "admin@hireinfinity.com", avatar: "https://randomuser.me/api/portraits/men/32.jpg", role: "Super Admin", status: "Active", lastLogin: "May 25, 2026 10:30 AM", isCurrentUser: true },
+  // { id: 1, name: "Admin User", email: "admin@hireinfinity.com", avatar: "https://randomuser.me/api/portraits/men/32.jpg", role: "Admin", status: "Active", lastLogin: "May 25, 2026 10:30 AM", isCurrentUser: true },
   { id: 2, name: "Sarah Johnson", email: "sarah.johnson@hireinfinity.com", avatar: "https://randomuser.me/api/portraits/women/44.jpg", role: "Admin", status: "Active", lastLogin: "May 25, 2026 09:15 AM" },
   { id: 3, name: "Michael Chen", email: "michael.chen@hireinfinity.com", avatar: "https://randomuser.me/api/portraits/men/45.jpg", role: "Manager", status: "Active", lastLogin: "May 24, 2026 04:45 PM" },
   { id: 4, name: "Priya Sharma", email: "priya.sharma@hireinfinity.com", avatar: "https://randomuser.me/api/portraits/women/68.jpg", role: "Content Editor", status: "Active", lastLogin: "May 24, 2026 11:20 AM" },
@@ -14,15 +14,15 @@ export const initialUsers = [
 ];
 
 export const initialRoles = [
-  { id: 1, name: "Super Admin", description: "Full platform access and system control", users: 1, permissions: 32, status: "Active" },
-  { id: 2, name: "Admin", description: "Manage users, content and day-to-day operations", users: 3, permissions: 24, status: "Active" },
+  { id: 1, name: "Admin", description: "Full platform access and system control", users: 1, permissions: 32, status: "Active" },
+  // { id: 2, name: "Admin", description: "Manage users, content and day-to-day operations", users: 3, permissions: 24, status: "Active" },
   { id: 3, name: "Manager", description: "Manage engineers, requests and case studies", users: 2, permissions: 18, status: "Active" },
   { id: 4, name: "Content Editor", description: "Manage website content and case studies", users: 3, permissions: 12, status: "Active" },
   { id: 5, name: "Viewer", description: "Read-only access to dashboard and reports", users: 3, permissions: 6, status: "Active" },
 ];
 
 export const modulePermissions = [
-  "Dashboard", "Consultation Requests", "Engineer Roster", "Specialties & Tech Stack",
+  "Dashboard", "Consultation Requests", "Engineers", "Specialties & Tech Stack",
   "Pricing & Plans", "Website Content", "Case Studies", "Admin Users & Roles", "Settings",
 ];
 
@@ -32,9 +32,9 @@ export function getDefaultPermissions(roleName) {
   return modulePermissions.map((mod) => {
     const actions = {};
     actionTypes.forEach((a) => {
-      if (roleName === "Super Admin") actions[a] = true;
+      if (roleName === "Admin") actions[a] = true;
       else if (roleName === "Viewer") actions[a] = a === "View";
-      else if (roleName === "Admin") actions[a] = true;
+      // else if (roleName === "Admin") actions[a] = true;
       else if (roleName === "Manager") actions[a] = a !== "Delete";
       else if (roleName === "Content Editor") actions[a] = a !== "Delete" && a !== "Export";
       else actions[a] = false;
@@ -44,8 +44,8 @@ export function getDefaultPermissions(roleName) {
 }
 
 export const initialPermissions = {
-  "Super Admin": getDefaultPermissions("Super Admin"),
   "Admin": getDefaultPermissions("Admin"),
+  // "Admin": getDefaultPermissions("Admin"),
   "Manager": getDefaultPermissions("Manager"),
   "Content Editor": getDefaultPermissions("Content Editor"),
   "Viewer": getDefaultPermissions("Viewer"),
@@ -62,5 +62,5 @@ export const activityLogs = [
   { id: 8, user: "Natalie Brown", action: "updated pricing plans", type: "pricing", time: "4 days ago" },
 ];
 
-export const roleOptions = ["Super Admin", "Admin", "Manager", "Content Editor", "Viewer"];
+export const roleOptions = ["Admin", "Manager", "Content Editor", "Viewer"];
 export const statusOptions = ["Active", "Inactive", "Pending"];

@@ -24,7 +24,7 @@ export default function RequestsChart() {
         </button>
       </div>
 
-      <div className="h-64">
+      <div className="h-48 lg:h-64">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={requestsOverTimeData} margin={{ top: 5, right: 10, left: -10, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />

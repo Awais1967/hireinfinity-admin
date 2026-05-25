@@ -30,7 +30,7 @@ export default function Topbar({ onMenuToggle }) {
           </div>
           <div className="hidden sm:block">
             <p className="text-sm font-semibold text-slate-900 leading-tight">Admin User</p>
-            <p className="text-xs text-slate-500">Super Admin</p>
+            <p className="text-xs text-slate-500">Admin</p>
           </div>
           <ChevronDown size={15} className="text-slate-400 hidden sm:block" />
         </div>

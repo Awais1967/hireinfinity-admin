@@ -57,7 +57,7 @@ export default function Sidebar({ open, onClose }) {
           </ul>
         </nav>
 
-        <div className="mx-3 mb-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
+        {/* <div className="mx-3 mb-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
           <div className="mb-1 flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
             <Headphones size={16} />
           </div>
@@ -68,7 +68,7 @@ export default function Sidebar({ open, onClose }) {
           <button className="mt-3 w-full rounded-lg bg-blue-600 py-2 text-xs font-semibold text-white hover:bg-blue-700 transition-colors">
             Contact Support
           </button>
-        </div>
+        </div> */}
       </aside>
     </>
   );

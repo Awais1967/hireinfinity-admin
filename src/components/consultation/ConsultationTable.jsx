@@ -6,7 +6,6 @@ export default function ConsultationTable({
   records,
   onView,
   onEdit,
-  onMarkConverted,
   onMarkRejected,
   onDelete,
 }) {
@@ -104,15 +103,6 @@ export default function ConsultationTable({
                           ref={menuRef}
                           className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border border-gray-200 bg-white py-1 shadow-lg"
                         >
-                          <button
-                            onClick={() => {
-                              onMarkConverted(record.id);
-                              setOpenMenuId(null);
-                            }}
-                            className="flex w-full items-center px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
-                          >
-                            Mark as Converted
-                          </button>
                           <button
                             onClick={() => {
                               onMarkRejected(record.id);

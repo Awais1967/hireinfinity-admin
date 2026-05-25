@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import StatusBadge from "./StatusBadge";
 
-const statusOptions = ["New", "Contacted", "Scheduled", "In Progress", "Converted", "Rejected"];
+const statusOptions = ["New", "Contacted", "Scheduled", "In Progress", "Rejected"];
 const assigneeOptions = ["Sarah M.", "Alex R.", "David K.", "Unassigned"];
 
 export default function ConsultationModal({ mode, record, onClose, onSave }) {

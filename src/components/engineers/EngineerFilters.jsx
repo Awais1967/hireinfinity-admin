@@ -14,11 +14,11 @@ export default function EngineerFilters({
   onSeniorityChange,
 }) {
   const selectClass =
-    "rounded-lg border border-gray-200 bg-white px-3 py-2 pr-8 text-sm text-slate-700 outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 min-w-[140px]";
+    "w-full sm:w-auto rounded-lg border border-gray-200 bg-white px-3 py-2 pr-8 text-sm text-slate-700 outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 min-w-0 sm:min-w-[140px]";
 
   return (
-    <div className="flex flex-wrap items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
-      <div className="relative min-w-[180px] flex-1">
+    <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+      <div className="relative w-full sm:min-w-[180px] sm:flex-1">
         <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
         <input
           type="text"
@@ -53,7 +53,7 @@ export default function EngineerFilters({
         ))}
       </select>
 
-      <button className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50">
+      <button className="flex w-full sm:w-auto items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-50">
         <Filter size={15} />
         Filters
       </button>

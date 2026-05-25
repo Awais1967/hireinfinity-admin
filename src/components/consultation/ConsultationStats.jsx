@@ -1,43 +1,47 @@
-const dotColors = {
-  blue: "bg-blue-500",
-  amber: "bg-amber-500",
-  purple: "bg-purple-500",
-  cyan: "bg-cyan-500",
-  green: "bg-emerald-500",
-  red: "bg-red-500",
+import { FileText, Mail, Phone, Calendar, Clock, XCircle } from "lucide-react";
+
+const iconMap = {
+  FileText, Mail, Phone, Calendar, Clock, XCircle,
 };
 
-const accentColors = {
-  blue: "bg-blue-50 border-blue-200",
-  amber: "bg-amber-50 border-amber-200",
-  purple: "bg-purple-50 border-purple-200",
-  cyan: "bg-cyan-50 border-cyan-200",
-  green: "bg-emerald-50 border-emerald-200",
-  red: "bg-red-50 border-red-200",
+const colorMap = {
+  blue: "bg-blue-100 text-blue-600",
+  amber: "bg-amber-100 text-amber-600",
+  purple: "bg-purple-100 text-purple-600",
+  green: "bg-emerald-100 text-emerald-600",
+  red: "bg-red-100 text-red-600",
+};
+
+const activeBorderMap = {
+  blue: "border-blue-300 bg-blue-50",
+  amber: "border-amber-300 bg-amber-50",
+  purple: "border-purple-300 bg-purple-50",
+  green: "border-emerald-300 bg-emerald-50",
+  red: "border-red-300 bg-red-50",
 };
 
 export default function ConsultationStats({ cards, activeCard, onCardClick }) {
   return (
-    <div className="flex gap-3 overflow-x-auto pb-1">
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {cards.map((card) => {
-        const isActive = activeCard === card.value;
-        const chipBorder = isActive
-          ? accentColors[card.color] || "border-blue-200"
-          : "border-transparent";
-        const chipBg = isActive ? accentColors[card.color] || "bg-blue-50" : "bg-white";
-
+        const Icon = iconMap[card.icon] || FileText;
+        const isActive = activeCard === card.filter;
         return (
           <button
-            key={card.value}
-            onClick={() => onCardClick(card.value)}
-            className={`flex shrink-0 items-center gap-2.5 rounded-xl border px-4 py-2.5 shadow-sm transition-all hover:shadow-md ${chipBg} ${chipBorder} ${
-              isActive ? "shadow-sm" : ""
+            key={card.filter}
+            onClick={() => onCardClick(card.filter)}
+            className={`flex items-center gap-4 rounded-xl border p-4 shadow-sm transition-all hover:shadow-md text-left ${
+              isActive
+                ? activeBorderMap[card.color] || "border-blue-300 bg-blue-50"
+                : "border-gray-200 bg-white"
             }`}
           >
-            <span className={`h-2.5 w-2.5 rounded-full ${dotColors[card.color] || "bg-blue-500"}`} />
-            <div className="text-left">
-              <p className="text-xs font-medium text-slate-500">{card.label}</p>
-              <p className="text-lg font-bold text-slate-900">{card.count}</p>
+            <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${colorMap[card.color] || colorMap.blue}`}>
+              <Icon size={22} />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-slate-900">{card.value}</p>
+              <p className="text-xs font-medium text-slate-500">{card.subtitle}</p>
             </div>
           </button>
         );

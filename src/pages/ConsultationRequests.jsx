@@ -5,7 +5,7 @@ import ConsultationStats from "../components/consultation/ConsultationStats";
 import ConsultationTable from "../components/consultation/ConsultationTable";
 import ConsultationModal from "../components/consultation/ConsultationModal";
 import Pagination from "../components/consultation/Pagination";
-import { generateAllRequests, statusCards } from "../data/consultationData";
+import { generateAllRequests } from "../data/consultationData";
 
 const PAGE_SIZE = 10;
 
@@ -13,9 +13,29 @@ export default function ConsultationRequests() {
   const [allRequests, setAllRequests] = useState(() => generateAllRequests());
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
+  const [specialtyFilter, setSpecialtyFilter] = useState("");
+  const [timelineFilter, setTimelineFilter] = useState("");
+  const [assignedFilter, setAssignedFilter] = useState("");
   const [activeCard, setActiveCard] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [modal, setModal] = useState({ show: false, mode: null, record: null });
+
+  const statsCards = useMemo(() => {
+    const total = allRequests.length;
+    const newCount = allRequests.filter((r) => r.status === "New").length;
+    const contacted = allRequests.filter((r) => r.status === "Contacted").length;
+    const scheduled = allRequests.filter((r) => r.status === "Scheduled").length;
+    const inProgress = allRequests.filter((r) => r.status === "In Progress").length;
+    const rejected = allRequests.filter((r) => r.status === "Rejected").length;
+    return [
+      { value: total, subtitle: "Total consultation requests", color: "blue", icon: "FileText", label: "All Requests", filter: "all" },
+      { value: newCount, subtitle: "New incoming leads", color: "blue", icon: "Mail", label: "New", filter: "New" },
+      { value: contacted, subtitle: "Follow-up started", color: "amber", icon: "Phone", label: "Contacted", filter: "Contacted" },
+      { value: scheduled, subtitle: "Demo calls booked", color: "purple", icon: "Calendar", label: "Scheduled", filter: "Scheduled" },
+      { value: inProgress, subtitle: "Currently being handled", color: "blue", icon: "Clock", label: "In Progress", filter: "In Progress" },
+      { value: rejected, subtitle: "Not qualified / closed", color: "red", icon: "XCircle", label: "Rejected", filter: "Rejected" },
+    ];
+  }, [allRequests]);
 
   const filtered = useMemo(() => {
     let data = allRequests;
@@ -34,8 +54,20 @@ export default function ConsultationRequests() {
       data = data.filter((r) => r.status === statusFilter);
     }
 
+    if (specialtyFilter) {
+      data = data.filter((r) => r.specialty === specialtyFilter);
+    }
+
+    if (timelineFilter) {
+      data = data.filter((r) => r.timeline === timelineFilter);
+    }
+
+    if (assignedFilter) {
+      data = data.filter((r) => r.assignedTo === assignedFilter);
+    }
+
     return data;
-  }, [allRequests, searchQuery, statusFilter]);
+  }, [allRequests, searchQuery, statusFilter, specialtyFilter, timelineFilter, assignedFilter]);
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const paginated = useMemo(() => {
@@ -43,21 +75,28 @@ export default function ConsultationRequests() {
     return filtered.slice(start, start + PAGE_SIZE);
   }, [filtered, currentPage]);
 
-  const handleStatusCardClick = (value) => {
-    setActiveCard(value);
-    if (value === "all") {
+  const resetPage = () => setCurrentPage(1);
+
+  const handleStatusCardClick = (filterValue) => {
+    setActiveCard(filterValue);
+    if (filterValue === "all") {
       setStatusFilter("");
     } else {
-      setStatusFilter(value);
+      setStatusFilter(filterValue);
     }
-    setCurrentPage(1);
+    resetPage();
   };
 
   const handleStatusChange = (value) => {
     setStatusFilter(value);
     setActiveCard(value || "all");
-    setCurrentPage(1);
+    resetPage();
   };
+
+  const handleSearchChange = (v) => { setSearchQuery(v); resetPage(); };
+  const handleSpecialtyChange = (v) => { setSpecialtyFilter(v); resetPage(); };
+  const handleTimelineChange = (v) => { setTimelineFilter(v); resetPage(); };
+  const handleAssignedChange = (v) => { setAssignedFilter(v); resetPage(); };
 
   const handleExportCSV = () => {
     const headers = ["Name", "Company", "Email", "Specialty", "Budget", "Timeline", "Status", "Scheduled On", "Assigned To"];
@@ -87,12 +126,6 @@ export default function ConsultationRequests() {
     );
   };
 
-  const handleMarkConverted = (id) => {
-    setAllRequests((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, status: "Converted" } : r))
-    );
-  };
-
   const handleMarkRejected = (id) => {
     setAllRequests((prev) =>
       prev.map((r) => (r.id === id ? { ...r, status: "Rejected" } : r))
@@ -107,28 +140,30 @@ export default function ConsultationRequests() {
     <div className="mx-auto max-w-7xl space-y-5">
       <ConsultationHeader />
 
-      <ConsultationFilters
-        searchQuery={searchQuery}
-        onSearchChange={(v) => {
-          setSearchQuery(v);
-          setCurrentPage(1);
-        }}
-        statusFilter={statusFilter}
-        onStatusChange={handleStatusChange}
-        onExportCSV={handleExportCSV}
-      />
-
       <ConsultationStats
-        cards={statusCards}
+        cards={statsCards}
         activeCard={activeCard}
         onCardClick={handleStatusCardClick}
+      />
+
+      <ConsultationFilters
+        searchQuery={searchQuery}
+        onSearchChange={handleSearchChange}
+        statusFilter={statusFilter}
+        onStatusChange={handleStatusChange}
+        specialtyFilter={specialtyFilter}
+        onSpecialtyChange={handleSpecialtyChange}
+        timelineFilter={timelineFilter}
+        onTimelineChange={handleTimelineChange}
+        assignedFilter={assignedFilter}
+        onAssignedChange={handleAssignedChange}
+        onExportCSV={handleExportCSV}
       />
 
       <ConsultationTable
         records={paginated}
         onView={handleView}
         onEdit={handleEdit}
-        onMarkConverted={handleMarkConverted}
         onMarkRejected={handleMarkRejected}
         onDelete={handleDelete}
       />

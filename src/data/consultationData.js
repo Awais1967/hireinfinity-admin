@@ -55,7 +55,7 @@ const baseData = [
     specialty: "Backend & Databases",
     budget: "$6k - $10k/mo",
     timeline: "1 - 2 Weeks",
-    status: "Converted",
+    status: "Scheduled",
     scheduledOn: "Jun 20, 2026 09:00 AM CST",
     assignedTo: "Alex R.",
   },
@@ -115,7 +115,7 @@ const baseData = [
     specialty: "Backend & Databases",
     budget: "$6k - $9k/mo",
     timeline: "1 - 2 Weeks",
-    status: "Converted",
+    status: "Scheduled",
     scheduledOn: "Jun 16, 2026 09:00 AM CST",
     assignedTo: "Sarah M.",
   },
@@ -148,7 +148,7 @@ const specialties = [
   "Frontend & Figma", "Backend & Databases", "Mobile Apps", "DevOps & SRE", "QA Automation",
 ];
 
-const statuses = ["New", "Contacted", "Scheduled", "In Progress", "Converted", "Rejected"];
+const statuses = ["New", "Contacted", "Scheduled", "In Progress", "Rejected"];
 
 const timelines = ["Immediate", "1 - 2 Weeks", "2 - 4 Weeks", "2 - 3 Weeks", "1 - 2 Months"];
 
@@ -205,7 +205,6 @@ export const statusCards = [
   { label: "Contacted", count: 48, value: "Contacted", color: "amber" },
   { label: "Scheduled", count: 36, value: "Scheduled", color: "purple" },
   { label: "In Progress", count: 54, value: "In Progress", color: "cyan" },
-  { label: "Converted", count: 56, value: "Converted", color: "green" },
   { label: "Rejected", count: 22, value: "Rejected", color: "red" },
 ];
 
@@ -214,6 +213,12 @@ export const statusColors = {
   Contacted: "bg-amber-100 text-amber-700",
   Scheduled: "bg-purple-100 text-purple-700",
   "In Progress": "bg-cyan-100 text-cyan-700",
-  Converted: "bg-emerald-100 text-emerald-700",
   Rejected: "bg-red-100 text-red-700",
+};
+
+export const filterOptions = {
+  statuses: ["All Status", ...statuses],
+  specialties: ["All Specialties", ...specialties],
+  timelines: ["All Timeline", ...timelines],
+  assignees: ["All Assignees", ...assignees],
 };

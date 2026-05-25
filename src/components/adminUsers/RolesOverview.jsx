@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 
 const roleColors = {
-  "Super Admin": "bg-blue-500", "Admin": "bg-cyan-500",
+   "Admin": "bg-cyan-500",
   "Manager": "bg-purple-500", "Content Editor": "bg-orange-500", "Viewer": "bg-slate-400",
 };
 

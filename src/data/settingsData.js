@@ -31,7 +31,7 @@ export const retentionOptions = ["3 Months", "6 Months", "12 Months", "24 Months
 
 export const defaultProfile = {
   adminName: "Admin User",
-  adminRole: "Super Admin",
+  adminRole: "Admin",
   profileEmail: "admin@hireinfinity.com",
   phoneNumber: "+1 (555) 123-4567",
   avatarUrl: "",
@@ -92,7 +92,7 @@ export const systemInfo = {
   lastUpdated: "May 25, 2026 10:30 AM",
   environment: "Production",
   adminName: "Admin User",
-  role: "Super Admin",
+  role: "Admin",
   lastLogin: "May 25, 2026 09:45 AM",
   ipAddress: "192.168.1.42",
 };

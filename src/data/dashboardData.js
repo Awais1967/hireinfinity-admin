@@ -91,11 +91,11 @@ export const quickActionsData = [
 export const sidebarNavItems = [
   { id: "dashboard", label: "Dashboard", icon: "LayoutDashboard", path: "/" },
   { id: "consultations", label: "Consultation Requests", icon: "MessageSquare", path: "/consultations" },
-  { id: "roster", label: "Engineer Roster", icon: "Users", path: "/roster" },
-  { id: "specialties", label: "Specialties & Tech Stack", icon: "Code", path: "/specialties" },
-  { id: "pricing", label: "Pricing & Plans", icon: "DollarSign", path: "/pricing" },
-  { id: "content", label: "Website Content", icon: "FileEdit", path: "/content" },
-  { id: "casestudies", label: "Case Studies", icon: "BookOpen", path: "/casestudies" },
-  { id: "admin-users", label: "Admin Users & Roles", icon: "Shield", path: "/admin-users" },
-  { id: "settings", label: "Settings", icon: "Settings", path: "/settings" },
+  { id: "roster", label: "Engineers ", icon: "Users", path: "/engineers" },
+  // { id: "specialties", label: "Specialties & Tech Stack", icon: "Code", path: "/specialties" },
+  // { id: "pricing", label: "Pricing & Plans", icon: "DollarSign", path: "/pricing" },
+  // { id: "content", label: "Website Content", icon: "FileEdit", path: "/content" },
+  // { id: "casestudies", label: "Case Studies", icon: "BookOpen", path: "/casestudies" },
+  // { id: "admin-users", label: "Admin Users & Roles", icon: "Shield", path: "/admin-users" },
+  // { id: "settings", label: "Settings", icon: "Settings", path: "/settings" },
 ];

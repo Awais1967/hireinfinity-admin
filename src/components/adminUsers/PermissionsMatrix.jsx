@@ -3,7 +3,7 @@ import { modulePermissions, actionTypes, getDefaultPermissions } from "../../dat
 
 export default function PermissionsMatrix({ initialPermissions, onSave }) {
   const [editing, setEditing] = useState(false);
-  const [activeRole, setActiveRole] = useState("Super Admin");
+  const [activeRole, setActiveRole] = useState("Admin");
   const [perms, setPerms] = useState(() => ({ ...initialPermissions }));
 
   const roles = useMemo(() => Object.keys(perms), [perms]);
