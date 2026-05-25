@@ -1,13 +1,14 @@
-import { FileText, Mail, Phone, Calendar, Clock, XCircle } from "lucide-react";
+import { FileText, Phone, Calendar, Clock, XCircle } from "lucide-react";
 
 const iconMap = {
-  FileText, Mail, Phone, Calendar, Clock, XCircle,
+  FileText, Phone, Calendar, Clock, XCircle,
 };
 
 const colorMap = {
   blue: "bg-blue-100 text-blue-600",
   amber: "bg-amber-100 text-amber-600",
   purple: "bg-purple-100 text-purple-600",
+  cyan: "bg-cyan-100 text-cyan-600",
   green: "bg-emerald-100 text-emerald-600",
   red: "bg-red-100 text-red-600",
 };
@@ -16,6 +17,7 @@ const activeBorderMap = {
   blue: "border-blue-300 bg-blue-50",
   amber: "border-amber-300 bg-amber-50",
   purple: "border-purple-300 bg-purple-50",
+  cyan: "border-cyan-300 bg-cyan-50",
   green: "border-emerald-300 bg-emerald-50",
   red: "border-red-300 bg-red-50",
 };

@@ -2,7 +2,6 @@ import { kpiData } from "../data/dashboardData";
 import StatCard from "../components/dashboard/StatCard";
 import RequestsChart from "../components/dashboard/RequestsChart";
 import SpecialtiesChart from "../components/dashboard/SpecialtiesChart";
-import LeadSources from "../components/dashboard/LeadSources";
 import QuickActions from "../components/dashboard/QuickActions";
 
 export default function Dashboard() {
@@ -26,10 +25,6 @@ export default function Dashboard() {
       <div className="grid gap-4 lg:grid-cols-2">
         <RequestsChart />
         <SpecialtiesChart />
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2">
-        <LeadSources />
       </div>
 
       <QuickActions />

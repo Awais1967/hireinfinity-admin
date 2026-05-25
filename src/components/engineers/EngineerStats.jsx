@@ -1,9 +1,8 @@
-import { Users, CheckCircle, AlertCircle, XCircle, Star } from "lucide-react";
+import { Users, CheckCircle, XCircle, Star } from "lucide-react";
 
 const iconMap = {
   Users: Users,
   CheckCircle: CheckCircle,
-  AlertCircle: AlertCircle,
   XCircle: XCircle,
   Star: Star,
 };

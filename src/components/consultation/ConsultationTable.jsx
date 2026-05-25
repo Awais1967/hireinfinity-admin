@@ -1,27 +1,12 @@
-import { useState, useRef, useEffect } from "react";
-import { Eye, Edit3, MoreVertical } from "lucide-react";
+import { Eye, Edit3, Trash2 } from "lucide-react";
 import StatusBadge from "./StatusBadge";
 
 export default function ConsultationTable({
   records,
   onView,
   onEdit,
-  onMarkRejected,
   onDelete,
 }) {
-  const [openMenuId, setOpenMenuId] = useState(null);
-  const menuRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setOpenMenuId(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   if (!records.length) {
     return (
       <div className="rounded-xl border border-gray-200 bg-white p-10 text-center shadow-sm">
@@ -93,43 +78,17 @@ export default function ConsultationTable({
                     >
                       <Edit3 size={16} />
                     </button>
-                    <div className="relative">
-                      <button
-                        onClick={() => setOpenMenuId(openMenuId === record.id ? null : record.id)}
-                        className="grid h-8 w-8 place-items-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
-                        title="More"
-                      >
-                        <MoreVertical size={16} />
-                      </button>
-                      {openMenuId === record.id && (
-                        <div
-                          ref={menuRef}
-                          className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg border border-gray-200 bg-white py-1 shadow-lg"
-                        >
-                          <button
-                            onClick={() => {
-                              onMarkRejected(record.id);
-                              setOpenMenuId(null);
-                            }}
-                            className="flex w-full items-center px-3 py-2 text-sm text-slate-700 hover:bg-slate-50"
-                          >
-                            Mark as Rejected
-                          </button>
-                          <hr className="my-1 border-gray-100" />
-                          <button
-                            onClick={() => {
-                              if (window.confirm("Are you sure you want to delete this request?")) {
-                                onDelete(record.id);
-                              }
-                              setOpenMenuId(null);
-                            }}
-                            className="flex w-full items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50"
-                          >
-                            Delete Request
-                          </button>
-                        </div>
-                      )}
-                    </div>
+                    <button
+                      onClick={() => {
+                        if (window.confirm("Are you sure you want to delete this request?")) {
+                          onDelete(record.id);
+                        }
+                      }}
+                      className="grid h-8 w-8 place-items-center rounded-lg text-slate-400 hover:bg-red-50 hover:text-red-600 transition-colors"
+                      title="Delete"
+                    >
+                      <Trash2 size={16} />
+                    </button>
                   </div>
                 </td>
               </tr>

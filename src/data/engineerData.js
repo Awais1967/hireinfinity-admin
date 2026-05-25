@@ -46,7 +46,7 @@ const baseEngineers = [
     experience: "7 - 10 yrs",
     monthlyRate: "$5,800/mo",
     hourlyRate: "$40/hr",
-    availability: "Limited",
+    availability: "Unavailable",
     visibility: "Public",
     featured: true,
     seniority: "Lead",
@@ -98,7 +98,7 @@ const baseEngineers = [
     experience: "5 - 7 yrs",
     monthlyRate: "$3,200/mo",
     hourlyRate: "$23/hr",
-    availability: "Limited",
+    availability: "Unavailable",
     visibility: "Public",
     featured: false,
     seniority: "Senior",
@@ -128,7 +128,7 @@ const specMap = {
 
 const specialties = ["Frontend & Figma", "Backend & Databases", "Mobile Apps", "DevOps & SRE", "QA Automation"];
 const seniorities = ["Junior", "Mid-Level", "Senior", "Lead", "Architect"];
-const availabilities = ["Available", "Limited", "Unavailable"];
+const availabilities = ["Available", "Unavailable"];
 const visibilities = ["Public", "Private"];
 
 const expRanges = {
@@ -211,7 +211,6 @@ export function generateAllEngineers() {
 export const statsCards = [
   { label: "Total Engineers", value: 128, subtitle: "All team members", icon: "Users", color: "blue" },
   { label: "Available", value: 98, subtitle: "Actively available", icon: "CheckCircle", color: "green" },
-  { label: "Limited Availability", value: 18, subtitle: "Limited / Part-time", icon: "AlertCircle", color: "amber" },
   { label: "Unavailable", value: 12, subtitle: "Not available", icon: "XCircle", color: "red" },
   { label: "Featured Profiles", value: 24, subtitle: "Highlighted on site", icon: "Star", color: "purple" },
 ];
@@ -226,7 +225,6 @@ export const specialtyColors = {
 
 export const availabilityColors = {
   Available: "bg-emerald-100 text-emerald-700",
-  Limited: "bg-amber-100 text-amber-700",
   Unavailable: "bg-red-100 text-red-700",
 };
 

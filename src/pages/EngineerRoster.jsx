@@ -24,13 +24,11 @@ export default function EngineerRoster() {
   const statsCards = useMemo(() => {
     const total = engineers.length;
     const available = engineers.filter((e) => e.availability === "Available").length;
-    const limited = engineers.filter((e) => e.availability === "Limited").length;
     const unavailable = engineers.filter((e) => e.availability === "Unavailable").length;
     const featured = engineers.filter((e) => e.featured).length;
     return [
       { label: "Total Engineers", value: total, subtitle: "All team members", icon: "Users", color: "blue" },
       { label: "Available", value: available, subtitle: "Actively available", icon: "CheckCircle", color: "green" },
-      { label: "Limited Availability", value: limited, subtitle: "Limited / Part-time", icon: "AlertCircle", color: "amber" },
       { label: "Unavailable", value: unavailable, subtitle: "Not available", icon: "XCircle", color: "red" },
       { label: "Featured Profiles", value: featured, subtitle: "Highlighted on site", icon: "Star", color: "purple" },
     ];
@@ -208,9 +206,8 @@ export default function EngineerRoster() {
         selectedIds={selectedIds}
         onSelectAll={handleSelectAll}
         onSelectOne={handleSelectOne}
-        onToggleFeatured={toggleFeatured}
         onEdit={(record) => setModal({ show: true, mode: "edit", record })}
-                onViewProfile={() => {}}
+        onViewProfile={(record) => setModal({ show: true, mode: "view", record })}
         onDelete={handleDelete}
         onMarkFeaturedAction={toggleFeatured}
         onRemoveFeatured={(id) => setEngineers((prev) => prev.map((e) => e.id === id ? { ...e, featured: false } : e))}

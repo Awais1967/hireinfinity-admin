@@ -2,7 +2,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 
 const specialties = ["Frontend & Figma", "Backend & Databases", "Mobile Apps", "DevOps & SRE", "QA Automation"];
-const availabilities = ["Available", "Limited", "Unavailable"];
+const availabilities = ["Available", "Unavailable"];
 const visibilities = ["Public", "Private"];
 const seniorities = ["Junior", "Mid-Level", "Senior", "Lead", "Architect"];
 
@@ -24,8 +24,9 @@ let nextId = 901;
 
 export default function EngineerModal({ mode, record, onClose, onSave }) {
   const isEdit = mode === "edit";
+  const isView = mode === "view";
   const [form, setForm] = useState(
-    isEdit && record
+    (isEdit || isView) && record
       ? {
           name: record.name,
           id: record.id,
@@ -66,7 +67,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
       >
         <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4">
           <h2 className="text-lg font-semibold text-slate-900">
-            {isEdit ? "Edit Engineer" : "Add Engineer"}
+            {isView ? "Engineer Profile" : isEdit ? "Edit Engineer" : "Add Engineer"}
           </h2>
           <button
             onClick={onClose}
@@ -86,6 +87,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
                 onChange={(e) => handleChange("name", e.target.value)}
                 className={inputClass}
                 placeholder="e.g. Senior React Developer"
+                readOnly={isView}
                 required
               />
             </div>
@@ -96,7 +98,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
                 value={form.id}
                 onChange={(e) => handleChange("id", e.target.value)}
                 className={inputClass}
-                readOnly={isEdit}
+                readOnly={isEdit || isView}
               />
             </div>
           </div>
@@ -109,6 +111,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
               onChange={(e) => handleChange("avatar", e.target.value)}
               className={inputClass}
               placeholder="https://randomuser.me/api/portraits/..."
+              readOnly={isView}
             />
           </div>
 
@@ -119,6 +122,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
                 value={form.specialty}
                 onChange={(e) => handleChange("specialty", e.target.value)}
                 className={inputClass}
+                disabled={isView}
               >
                 {specialties.map((s) => (
                   <option key={s} value={s}>{s}</option>
@@ -131,6 +135,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
                 value={form.seniority}
                 onChange={(e) => handleChange("seniority", e.target.value)}
                 className={inputClass}
+                disabled={isView}
               >
                 {seniorities.map((s) => (
                   <option key={s} value={s}>{s}</option>
@@ -147,6 +152,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
               onChange={(e) => handleChange("experience", e.target.value)}
               className={inputClass}
               placeholder="e.g. 5 - 7 yrs"
+              readOnly={isView}
             />
           </div>
 
@@ -159,6 +165,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
                 onChange={(e) => handleChange("monthlyRate", e.target.value)}
                 className={inputClass}
                 placeholder="e.g. $4,500/mo"
+                readOnly={isView}
               />
             </div>
             <div>
@@ -169,6 +176,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
                 onChange={(e) => handleChange("hourlyRate", e.target.value)}
                 className={inputClass}
                 placeholder="e.g. $32/hr"
+                readOnly={isView}
               />
             </div>
           </div>
@@ -180,6 +188,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
                 value={form.availability}
                 onChange={(e) => handleChange("availability", e.target.value)}
                 className={inputClass}
+                disabled={isView}
               >
                 {availabilities.map((a) => (
                   <option key={a} value={a}>{a}</option>
@@ -192,6 +201,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
                 value={form.visibility}
                 onChange={(e) => handleChange("visibility", e.target.value)}
                 className={inputClass}
+                disabled={isView}
               >
                 {visibilities.map((v) => (
                   <option key={v} value={v}>{v}</option>
@@ -206,6 +216,7 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
               checked={form.featured}
               onChange={(e) => handleChange("featured", e.target.checked)}
               className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+              disabled={isView}
             />
             Featured Profile
           </label>
@@ -218,12 +229,14 @@ export default function EngineerModal({ mode, record, onClose, onSave }) {
             >
               Cancel
             </button>
-            <button
-              type="submit"
-              className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
-            >
-              {isEdit ? "Save Changes" : "Add Engineer"}
-            </button>
+            {!isView && (
+              <button
+                type="submit"
+                className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 transition-colors"
+              >
+                {isEdit ? "Save Changes" : "Add Engineer"}
+              </button>
+            )}
           </div>
         </form>
       </div>

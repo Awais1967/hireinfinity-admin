@@ -7,7 +7,7 @@ const baseData = [
     specialty: "Frontend & Figma",
     budget: "$3k - $6k/mo",
     timeline: "Immediate",
-    status: "New",
+    status: "Contacted",
     scheduledOn: "Jun 25, 2026 01:30 PM CST",
     assignedTo: "Sarah M.",
   },
@@ -79,7 +79,7 @@ const baseData = [
     specialty: "DevOps & SRE",
     budget: "$4k - $6k/mo",
     timeline: "Immediate",
-    status: "New",
+    status: "Contacted",
     scheduledOn: "Jun 19, 2026 01:30 PM CST",
     assignedTo: "Unassigned",
   },
@@ -148,7 +148,7 @@ const specialties = [
   "Frontend & Figma", "Backend & Databases", "Mobile Apps", "DevOps & SRE", "QA Automation",
 ];
 
-const statuses = ["New", "Contacted", "Scheduled", "In Progress", "Rejected"];
+export const statuses = ["Contacted", "Scheduled", "In Progress", "Rejected"];
 
 const timelines = ["Immediate", "1 - 2 Weeks", "2 - 4 Weeks", "2 - 3 Weeks", "1 - 2 Months"];
 
@@ -201,7 +201,6 @@ export function generateAllRequests() {
 
 export const statusCards = [
   { label: "All Requests", count: 248, value: "all", color: "blue" },
-  { label: "New", count: 32, value: "New", color: "blue" },
   { label: "Contacted", count: 48, value: "Contacted", color: "amber" },
   { label: "Scheduled", count: 36, value: "Scheduled", color: "purple" },
   { label: "In Progress", count: 54, value: "In Progress", color: "cyan" },
@@ -209,7 +208,6 @@ export const statusCards = [
 ];
 
 export const statusColors = {
-  New: "bg-blue-100 text-blue-700",
   Contacted: "bg-amber-100 text-amber-700",
   Scheduled: "bg-purple-100 text-purple-700",
   "In Progress": "bg-cyan-100 text-cyan-700",

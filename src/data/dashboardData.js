@@ -73,17 +73,10 @@ export const pricingInterestData = [
   { label: "Team Pods", value: 14, color: "#16a34a" },
 ];
 
-export const leadSourcesData = [
-  { label: "Direct / Organic", value: 48, color: "#2563eb" },
-  { label: "Google Ads", value: 22, color: "#7c3aed" },
-  { label: "LinkedIn", value: 16, color: "#16a34a" },
-  { label: "Referral", value: 14, color: "#ea580c" },
-];
-
 export const quickActionsData = [
-  { id: 1, label: "View New Leads", icon: "Users", color: "bg-blue-100 text-blue-600" },
-  { id: 2, label: "Add Engineer", icon: "UserPlus", color: "bg-emerald-100 text-emerald-600" },
-  { id: 3, label: "View Reports", icon: "BarChart3", color: "bg-cyan-100 text-cyan-600" },
+  { id: "dashboard", label: "Dashboard", icon: "LayoutDashboard", color: "bg-blue-100 text-blue-600", path: "/" },
+  { id: "consultations", label: "Consultation Requests", icon: "MessageSquare", color: "bg-amber-100 text-amber-600", path: "/consultations" },
+  { id: "engineers", label: "Engineers", icon: "Users", color: "bg-emerald-100 text-emerald-600", path: "/engineers" },
 ];
 
 export const sidebarNavItems = [

@@ -1,32 +1,32 @@
+import { useNavigate } from "react-router-dom";
 import {
+  LayoutDashboard,
+  MessageSquare,
   Users,
-  UserPlus,
-  DollarSign,
-  FileText,
-  BarChart3,
   ArrowRight,
 } from "lucide-react";
 import { quickActionsData } from "../../data/dashboardData";
 
 const iconMap = {
+  LayoutDashboard: LayoutDashboard,
+  MessageSquare: MessageSquare,
   Users: Users,
-  UserPlus: UserPlus,
-  DollarSign: DollarSign,
-  FileText: FileText,
-  BarChart3: BarChart3,
 };
 
 export default function QuickActions() {
+  const navigate = useNavigate();
+
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
       <h3 className="mb-4 text-base font-semibold text-slate-900">Quick Actions</h3>
 
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {quickActionsData.map((action) => {
           const Icon = iconMap[action.icon];
           return (
             <button
               key={action.id}
+              onClick={() => navigate(action.path)}
               className="group flex items-center gap-3 rounded-lg border border-gray-100 bg-white p-3.5 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-gray-200 hover:shadow-md"
             >
               <div

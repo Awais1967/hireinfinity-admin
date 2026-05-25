@@ -22,19 +22,24 @@ export default function ConsultationRequests() {
 
   const statsCards = useMemo(() => {
     const total = allRequests.length;
-    const newCount = allRequests.filter((r) => r.status === "New").length;
     const contacted = allRequests.filter((r) => r.status === "Contacted").length;
     const scheduled = allRequests.filter((r) => r.status === "Scheduled").length;
     const inProgress = allRequests.filter((r) => r.status === "In Progress").length;
     const rejected = allRequests.filter((r) => r.status === "Rejected").length;
     return [
       { value: total, subtitle: "Total consultation requests", color: "blue", icon: "FileText", label: "All Requests", filter: "all" },
-      { value: newCount, subtitle: "New incoming leads", color: "blue", icon: "Mail", label: "New", filter: "New" },
       { value: contacted, subtitle: "Follow-up started", color: "amber", icon: "Phone", label: "Contacted", filter: "Contacted" },
       { value: scheduled, subtitle: "Demo calls booked", color: "purple", icon: "Calendar", label: "Scheduled", filter: "Scheduled" },
-      { value: inProgress, subtitle: "Currently being handled", color: "blue", icon: "Clock", label: "In Progress", filter: "In Progress" },
+      { value: inProgress, subtitle: "Currently being handled", color: "cyan", icon: "Clock", label: "In Progress", filter: "In Progress" },
       { value: rejected, subtitle: "Not qualified / closed", color: "red", icon: "XCircle", label: "Rejected", filter: "Rejected" },
     ];
+  }, [allRequests]);
+
+  const assigneeOptions = useMemo(() => {
+    const names = allRequests
+      .map((request) => request.assignedTo)
+      .filter(Boolean);
+    return ["All Assignees", ...Array.from(new Set(names)).sort()];
   }, [allRequests]);
 
   const filtered = useMemo(() => {
@@ -126,12 +131,6 @@ export default function ConsultationRequests() {
     );
   };
 
-  const handleMarkRejected = (id) => {
-    setAllRequests((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, status: "Rejected" } : r))
-    );
-  };
-
   const handleDelete = (id) => {
     setAllRequests((prev) => prev.filter((r) => r.id !== id));
   };
@@ -157,6 +156,7 @@ export default function ConsultationRequests() {
         onTimelineChange={handleTimelineChange}
         assignedFilter={assignedFilter}
         onAssignedChange={handleAssignedChange}
+        assigneeOptions={assigneeOptions}
         onExportCSV={handleExportCSV}
       />
 
@@ -164,7 +164,6 @@ export default function ConsultationRequests() {
         records={paginated}
         onView={handleView}
         onEdit={handleEdit}
-        onMarkRejected={handleMarkRejected}
         onDelete={handleDelete}
       />
 
@@ -180,6 +179,7 @@ export default function ConsultationRequests() {
         <ConsultationModal
           mode={modal.mode}
           record={modal.record}
+          assigneeOptions={assigneeOptions}
           onClose={() => setModal({ show: false, mode: null, record: null })}
           onSave={handleSave}
         />

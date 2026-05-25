@@ -1,8 +1,8 @@
-import { X, Headphones } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { sidebarNavItems } from "../../data/dashboardData";
 
-export default function Sidebar({ open, onClose }) {
+export default function Sidebar({ open, collapsed, onClose, onToggleCollapse }) {
   return (
     <>
       {open && (
@@ -13,26 +13,28 @@ export default function Sidebar({ open, onClose }) {
       )}
 
       <aside
-        className={`fixed top-0 left-0 z-50 flex h-full w-64 flex-col bg-white border-r border-gray-200 transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed top-0 left-0 z-50 flex h-full flex-col bg-white border-r border-gray-200 transition-all duration-300 ${
+          collapsed ? "w-16" : "w-64"
+        } ${
           open ? "translate-x-0" : "-translate-x-full"
-        }`}
+        } lg:translate-x-0`}
       >
-        <div className="flex items-center justify-between px-5 pt-5 pb-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white text-sm font-bold">
+        <div className={`flex items-center justify-between px-3 pt-5 pb-4 ${collapsed ? "flex-col gap-3" : ""}`}>
+          <div className={`flex items-center ${collapsed ? "flex-col gap-1" : "gap-2"}`}>
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white text-sm font-bold">
               H
             </div>
-            <span className="text-lg font-bold text-slate-900">HireInfinity</span>
+            {!collapsed && <span className="text-lg font-bold text-slate-900">HireInfinity</span>}
           </div>
           <button
-            className="grid h-8 w-8 place-items-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden"
+            className="grid h-8 w-8 shrink-0 place-items-center rounded-lg text-slate-500 hover:bg-slate-100 lg:hidden"
             onClick={onClose}
           >
             <X size={18} />
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-2">
+        <nav className="flex-1 overflow-y-auto px-2 py-2">
           <ul className="space-y-1">
             {sidebarNavItems.map((item) => (
               <li key={item.id}>
@@ -40,35 +42,35 @@ export default function Sidebar({ open, onClose }) {
                   to={item.path}
                   onClick={onClose}
                   className={({ isActive }) =>
-                    `flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                    `flex items-center rounded-lg text-sm font-medium transition-colors ${
+                      collapsed ? "justify-center px-0 py-2.5" : "gap-3 px-3 py-2.5"
+                    } ${
                       isActive
                         ? "bg-blue-50 text-blue-600"
                         : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                     }`
                   }
+                  title={collapsed ? item.label : undefined}
                 >
-                  <span className="flex h-5 w-5 items-center justify-center">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center">
                     <NavIcon name={item.icon} />
                   </span>
-                  <span>{item.label}</span>
+                  {!collapsed && <span className="truncate">{item.label}</span>}
                 </NavLink>
               </li>
             ))}
           </ul>
         </nav>
 
-        {/* <div className="mx-3 mb-4 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
-          <div className="mb-1 flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
-            <Headphones size={16} />
-          </div>
-          <h4 className="mt-2 text-sm font-semibold text-slate-900">Need Help?</h4>
-          <p className="mt-0.5 text-xs text-slate-500">
-            Contact support or check our docs.
-          </p>
-          <button className="mt-3 w-full rounded-lg bg-blue-600 py-2 text-xs font-semibold text-white hover:bg-blue-700 transition-colors">
-            Contact Support
+        <div className="border-t border-gray-200 p-2">
+          <button
+            onClick={onToggleCollapse}
+            className="flex w-full items-center justify-center rounded-lg p-2 text-slate-500 hover:bg-slate-100 transition-colors"
+            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
+            {collapsed ? <ChevronRight size={18} /> : <ChevronLeft size={18} />}
           </button>
-        </div> */}
+        </div>
       </aside>
     </>
   );

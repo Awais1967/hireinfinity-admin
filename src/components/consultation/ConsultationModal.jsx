@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { X } from "lucide-react";
 import StatusBadge from "./StatusBadge";
+import { statuses } from "../../data/consultationData";
 
-const statusOptions = ["New", "Contacted", "Scheduled", "In Progress", "Rejected"];
-const assigneeOptions = ["Sarah M.", "Alex R.", "David K.", "Unassigned"];
+const statusOptions = statuses;
 
-export default function ConsultationModal({ mode, record, onClose, onSave }) {
+
+export default function ConsultationModal({ mode, record, assigneeOptions = [], onClose, onSave }) {
   const [form, setForm] = useState(
     record
       ? {
@@ -116,18 +117,26 @@ export default function ConsultationModal({ mode, record, onClose, onSave }) {
               {isView ? (
                 <p className="text-sm font-semibold text-slate-900">{record.assignedTo}</p>
               ) : (
-                <select
+                <input
+                  type="text"
                   value={form.assignedTo}
                   onChange={(e) => setForm({ ...form, assignedTo: e.target.value })}
+                  list="consultation-assignees"
                   className="mt-1 w-full rounded-lg border border-gray-200 px-3 py-1.5 text-sm outline-none focus:border-blue-400"
-                >
-                  {assigneeOptions.map((a) => (
-                    <option key={a} value={a}>{a}</option>
-                  ))}
-                </select>
+                  placeholder="Type a new assignee or choose one"
+                />
               )}
             </div>
           </div>
+          {!isView && (
+            <datalist id="consultation-assignees">
+              {assigneeOptions
+                .filter((assignee) => assignee !== "All Assignees")
+                .map((assignee) => (
+                  <option key={assignee} value={assignee} />
+                ))}
+            </datalist>
+          )}
         </div>
 
         <div className="flex justify-end gap-3 border-t border-gray-100 px-6 py-4">

@@ -7,6 +7,7 @@ export default function ConsultationFilters({
   specialtyFilter, onSpecialtyChange,
   timelineFilter, onTimelineChange,
   assignedFilter, onAssignedChange,
+  assigneeOptions = filterOptions.assignees,
   onExportCSV,
 }) {
   const selectClass = "w-full sm:w-auto rounded-lg border border-gray-200 bg-white px-3 py-2 pr-8 text-sm text-slate-700 outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400 min-w-0 sm:min-w-[140px]";
@@ -43,7 +44,7 @@ export default function ConsultationFilters({
       </select>
 
       <select value={assignedFilter} onChange={(e) => onAssignedChange(e.target.value)} className={selectClass}>
-        {filterOptions.assignees.map((opt) => (
+        {assigneeOptions.map((opt) => (
           <option key={opt} value={opt === "All Assignees" ? "" : opt}>{opt}</option>
         ))}
       </select>
