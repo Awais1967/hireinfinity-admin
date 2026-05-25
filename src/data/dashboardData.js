@@ -22,7 +22,7 @@ export const kpiData = [
   {
     id: 3,
     label: "Active Engineer Profiles",
-    value: "126",
+    value: "128",
     change: "+8.4%",
     changeLabel: "vs last month",
     changePositive: true,
@@ -31,12 +31,12 @@ export const kpiData = [
   },
   {
     id: 4,
-    label: "Conversion Rate",
-    value: "18.4%",
-    change: "+3.6%",
+    label: "Scheduled Consultations",
+    value: "38",
+    change: "+12.5%",
     changeLabel: "vs last month",
     changePositive: true,
-    icon: "Star",
+    icon: "Calendar",
     color: "orange",
   },
   {
@@ -83,9 +83,7 @@ export const leadSourcesData = [
 export const quickActionsData = [
   { id: 1, label: "View New Leads", icon: "Users", color: "bg-blue-100 text-blue-600" },
   { id: 2, label: "Add Engineer", icon: "UserPlus", color: "bg-emerald-100 text-emerald-600" },
-  { id: 3, label: "Update Pricing", icon: "DollarSign", color: "bg-purple-100 text-purple-600" },
-  { id: 4, label: "Manage Content", icon: "FileText", color: "bg-orange-100 text-orange-600" },
-  { id: 5, label: "View Reports", icon: "BarChart3", color: "bg-cyan-100 text-cyan-600" },
+  { id: 3, label: "View Reports", icon: "BarChart3", color: "bg-cyan-100 text-cyan-600" },
 ];
 
 export const sidebarNavItems = [

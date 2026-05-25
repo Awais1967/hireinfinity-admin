@@ -11,11 +11,11 @@ export default function Topbar({ onMenuToggle }) {
           <Menu size={20} />
         </button>
 
-        <button className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
+        {/* <button className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors">
           <Calendar size={15} className="text-slate-500" />
           <span>May 25 - June 25, 2026</span>
           <ChevronDown size={14} className="text-slate-400" />
-        </button>
+        </button> */}
       </div>
 
       <div className="flex items-center gap-4">

@@ -2,7 +2,7 @@ import {
   Users,
   TrendingUp,
   UserCheck,
-  Star,
+  Calendar,
   Clock,
 } from "lucide-react";
 
@@ -10,7 +10,7 @@ const iconMap = {
   Users: Users,
   TrendingUp: TrendingUp,
   UserCheck: UserCheck,
-  Star: Star,
+  Calendar: Calendar,
   Clock: Clock,
 };
 
